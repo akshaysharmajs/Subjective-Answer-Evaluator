@@ -1,7 +1,12 @@
 import re
-from nltk.corpus import stopwords
-import pandas as pd
+import scipy
+
+import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import seaborn as sns
+
+from nltk.corpus import stopwords
 
 gloveFile = "glove.6B.50d.txt"
 
@@ -35,7 +40,6 @@ def preprocess(raw_text):
 
 
 def cosine_distance_between_two_words(word1, word2):
-    import scipy
     return (1- scipy.spatial.distance.cosine(model[word1], model[word2]))
 
 
@@ -50,7 +54,6 @@ def calculate_heat_matrix_for_two_sentences(s1,s2):
 
 
 def cosine_distance_wordembedding_method(s1, s2):
-    import scipy
     vector_1 = np.mean([model[word] for word in preprocess(s1)],axis=0)
     vector_2 = np.mean([model[word] for word in preprocess(s2)],axis=0)
     cosine = scipy.spatial.distance.cosine(vector_1, vector_2)
@@ -61,8 +64,6 @@ def cosine_distance_wordembedding_method(s1, s2):
 
 def heat_map_matrix_between_two_sentences(s1,s2):
     df = calculate_heat_matrix_for_two_sentences(s1,s2)
-    import seaborn as sns
-    import matplotlib.pyplot as plt
     fig, ax = plt.subplots(figsize=(15,15)) 
     ax_blue = sns.heatmap(df, cmap="YlGnBu")
     # ax_red = sns.heatmap(df)

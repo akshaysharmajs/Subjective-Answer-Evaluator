@@ -1,7 +1,8 @@
 import os
 import cloudmersive_ocr_api_client
-from cloudmersive_ocr_api_client.rest import ApiException
+
 from autocorrect import spell
+from cloudmersive_ocr_api_client.rest import ApiException
 from IPython.display import display,Image
 
 api_instance = cloudmersive_ocr_api_client.ImageOcrApi()
