@@ -1,15 +1,15 @@
+import csv
 import difflib
-import ocr
+import language_check
+import math
 import modelling
+import ocr
 import re
 import string
-import math
-import language_check
-import csv
 
-from rake_nltk import Rake
 from nltk.corpus import words
 from nltk.corpus import wordnet
+from rake_nltk import Rake
 
 
 test1 = ocr.teacher_answer_scan()
