@@ -53,11 +53,10 @@ def student_answer_scan():
     test2=test2.lstrip(" ")
     test2=test2.rstrip(" ")
     test2=test2.replace('\n',' ')
-    test3=test2
     print("STUDENT'S ANSWER:")
     for image2 in range(len(imgs2)):
         display(Image(filename=imgs2[image2]))
     print(test2,"\n")
     list1=test2.split(".")
-    print(list1)
+    return list1
 

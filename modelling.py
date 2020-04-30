@@ -8,7 +8,6 @@ import seaborn as sns
 
 from nltk.corpus import stopwords
 
-gloveFile = "glove.6B.50d.txt"
 
 def loadGloveModel(gloveFile):
     print ("Loading Glove Model")
@@ -69,7 +68,14 @@ def heat_map_matrix_between_two_sentences(s1,s2):
     # ax_red = sns.heatmap(df)
     m=cosine_distance_wordembedding_method(s1, s2)
     return m
-model = loadGloveModel(gloveFile)
+
+    
+def remove(duplicate):
+    final_list = []
+    for num in duplicate:
+        if num not in final_list:
+            final_list.append(num)
+    return final_list
 
 
 
