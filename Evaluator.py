@@ -15,9 +15,6 @@ from rake_nltk import Rake
 test1 = ocr.teacher_answer_scan()
 list1 = ocr.student_answer_scan() 
 
-gloveFile = "glove.6B.50d.txt"
-model = modelling.loadGloveModel(gloveFile)
-
 strr = ""
 for i in range(len(list1)):
     g=[]
@@ -26,7 +23,7 @@ for i in range(len(list1)):
         o[k]=(o[k].lower()).strip(",")
         o[k]=(o[k].lower()).strip("?")
         o[k]=(o[k].lower()).strip("/")
-        if(o[k] in model):
+        if(o[k] in modelling.model):
             continue
         else:
             g.append(o[k])
@@ -41,7 +38,10 @@ for i in range(len(list1)):
 
 strr=strr.lstrip(" ")
 strr=strr.rstrip(" ")
-list2=strr.split(".")
+print(strr)
+print()
+print(strr.split("."))
+list2=strr.split('.')
 print("Student's answer split into different sentences: ",list2)
 
 
@@ -51,9 +51,11 @@ for i in range(len(list2)):
     p=modelling.preprocess(list2[i])
     if(len(p)==0):
         index.append(i)
+list2temp = list2.copy()
 for z in range(len(index)):
     ke=index[z]
-    list2.remove(list2[ke])
+    list2temp.remove(list2[ke])
+list2 = list2temp.copy()    
 print(index)
 print(list2)
 index1=[]
