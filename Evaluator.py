@@ -14,7 +14,7 @@ from rake_nltk import Rake
 
 test1 = ocr.teacher_answer_scan()
 list1 = ocr.student_answer_scan() 
-
+ 
 strr = ""
 for i in range(len(list1)):
     g=[]
@@ -38,8 +38,6 @@ for i in range(len(list1)):
 
 strr=strr.lstrip(" ")
 strr=strr.rstrip(" ")
-print(strr)
-print()
 print(strr.split("."))
 list2=strr.split('.')
 print("Student's answer split into different sentences: ",list2)
@@ -99,14 +97,14 @@ arr.append(m)
 
 
 #length of students answer
-res = sum([i.strip(string.punctuation).isalpha() and i.strip(string.digits).isalpha() for i in test3.split()])
+res = sum([i.strip(string.punctuation).isalpha() and i.strip(string.digits).isalpha() for i in test1.split()])
 print("Length of Student's answer:-",res)
 
 
 
 #checking grammatical errors
 tool = language_check.LanguageTool('en-US')
-matches = tool.check(str)
+matches = tool.check(strr)
 print("Approximate number of errors:",len(matches))
 print("Score of the answer based on number of errors:",(10-round((len(matches)/res)*10,2)))
 arr.append(10-round((len(matches)/res)*10,2))
