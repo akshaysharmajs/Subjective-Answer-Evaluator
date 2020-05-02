@@ -24,7 +24,6 @@ def loadGloveModel(gloveFile):
 
 
 def preprocess(raw_text):
-
     # keep only words
     letters_only_text = re.sub("[^a-zA-Z]", " ", raw_text)
 
@@ -42,7 +41,7 @@ def cosine_distance_between_two_words(word1, word2):
     return (1- scipy.spatial.distance.cosine(model[word1], model[word2]))
 
 
-def calculate_heat_matrix_for_two_sentences(s1,s2):
+def calculate_heat_matrix_for_two_sentences(s1, s2):
     s1 = preprocess(s1)
     s2 = preprocess(s2)
     result_list = [[cosine_distance_between_two_words(word1, word2) for word2 in s2] for word1 in s1]
@@ -61,8 +60,8 @@ def cosine_distance_wordembedding_method(s1, s2):
     return x
 
 
-def heat_map_matrix_between_two_sentences(s1,s2):
-    df = calculate_heat_matrix_for_two_sentences(s1,s2)
+def heat_map_matrix_between_two_sentences(s1, s2):
+    df = calculate_heat_matrix_for_two_sentences(s1, s2)
     fig, ax = plt.subplots(figsize=(15,15)) 
     ax_blue = sns.heatmap(df, cmap="YlGnBu")
     # ax_red = sns.heatmap(df)
@@ -77,6 +76,7 @@ def remove(duplicate):
             final_list.append(num)
     return final_list
 
-
+gloveFile = "glove.6B.50d.txt"
+model = loadGloveModel(gloveFile)
 
 
