@@ -1,13 +1,15 @@
 import os
 import cloudmersive_ocr_api_client
 
-from autocorrect import spell
+from autocorrect import Speller
 from cloudmersive_ocr_api_client.rest import ApiException
 from IPython.display import display,Image
 
 api_instance = cloudmersive_ocr_api_client.ImageOcrApi()
 api_instance.api_client.configuration.api_key = {}
 api_instance.api_client.configuration.api_key['Apikey'] = 'a512a2ed-e139-4d22-9528-7c078fdc0b5b'
+
+spell = Speller(lang = 'en')
 
 def load(folder,imgs):
     for i in os.listdir(folder):
@@ -30,10 +32,12 @@ def teacher_answer_scan():
             print("Exception when calling ImageOcrApi->image_ocr_post: %s\n" % e)
     test1=test1.lstrip(" ")
     test1=test1.rstrip(" ")
+    test1=spell(test1)
     print("TEACHER'S ANSWER:")
     for image1 in range(len(imgs1)):
         display(Image(filename=imgs1[image1]))
     print(test1,"\n")
+    return test1
 
 
 def student_answer_scan():
@@ -53,10 +57,10 @@ def student_answer_scan():
     test2=test2.lstrip(" ")
     test2=test2.rstrip(" ")
     test2=test2.replace('\n',' ')
+    test2=spell(test2)
     print("STUDENT'S ANSWER:")
     for image2 in range(len(imgs2)):
         display(Image(filename=imgs2[image2]))
     print(test2,"\n")
     list1=test2.split(".")
     return list1
-
