@@ -1,4 +1,4 @@
-#Subjective Answer Evaluator
+# Subjective Answer Evaluator
 
 The conventional way of paper checking is very hecting and mentally tiring. The problem can be resolved if this work is done by a machine which is trained for checking answers based on prior knowledge of evaluating answers. A subjective answer evaluator uses certain parameters/features which can help the machine judge the answer based on previous learning. The answer we wish to establish will be extracted using OCR and evaluated on different parameters.
 
