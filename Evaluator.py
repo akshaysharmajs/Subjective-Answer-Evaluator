@@ -2,6 +2,7 @@ import csv
 import difflib
 import language_check
 import math
+import marking
 import modelling
 import ocr
 import re
@@ -178,3 +179,6 @@ with open("dataset##.csv", 'a') as csvfile:
     csvwriter = csv.writer(csvfile,lineterminator='\n')
     csvwriter.writerow(arr)
 print("The observations has been added to the dataset.")
+
+marking.marker(arr)
+#final marks provided
